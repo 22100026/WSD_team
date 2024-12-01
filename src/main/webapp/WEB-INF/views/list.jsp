@@ -82,6 +82,7 @@
   <hr class="my-4">
   <table class="table table-striped table-sm" id="list">
     <tr>
+      <th scope="col">id</th>
       <th scope="col">이름</th>
       <th scope="col">호실</th>
       <th scope="col">전화번호</th>
@@ -94,6 +95,7 @@
     </tr>
     <c:forEach items="${list}" var="n">
       <tr>
+        <td>${n.id}</td>
         <td onclick="location.href='view/${n.id}'" class="view"><font color="blue">${n.name}</font></td>
         <td>${n.dorm}호</td>
         <td>${n.phone}</td>
