@@ -15,8 +15,8 @@ public class CrudDAO {
     @Autowired
     JdbcTemplate jdbcTemplate;
 
-    private final String CRUD_INSERT = "insert into crud (name, dorm, phone, student, bday, gender, city, file, etc, view) values(?,?,?,?,?,?,?,?,?,1)";
-    private final String CRUD_UPDATE = "update crud set name=?, dorm=?, phone=?, student=?, bday=?, gender=?, city=?, file=?, etc=? where id=?";
+    private final String CRUD_INSERT = "insert into crud (name, dorm, phone, student, bday, gender, city, etc, view) values(?,?,?,?,?,?,?,?,1)";
+    private final String CRUD_UPDATE = "update crud set name=?, dorm=?, phone=?, student=?, bday=?, gender=?, city=?, etc=? where id=?";
     private final String CRUD_DELETE = "delete from crud where id=?";
     private final String CRUD_SELECT = "select * from crud where id =?";
     private final String CRUD_SELECTALL = "select * from crud";
@@ -27,11 +27,11 @@ public class CrudDAO {
     }
 
     public int insertCrud(CrudVO vo) {
-        return jdbcTemplate.update(CRUD_INSERT, vo.getName(), vo.getDorm(), vo.getPhone(), vo.getStudent(),vo.getBday(), vo.getGender(), vo.getCity(), vo.getFile(), vo.getEtc());
+        return jdbcTemplate.update(CRUD_INSERT, vo.getName(), vo.getDorm(), vo.getPhone(), vo.getStudent(),vo.getBday(), vo.getGender(), vo.getCity(), vo.getEtc());
     }
 
     public int updateCrud(CrudVO vo) {
-        return jdbcTemplate.update(CRUD_UPDATE, vo.getName(), vo.getDorm(), vo.getPhone(), vo.getStudent(),vo.getBday(), vo.getGender(), vo.getCity(), vo.getFile(), vo.getEtc(), vo.getId());
+        return jdbcTemplate.update(CRUD_UPDATE, vo.getName(), vo.getDorm(), vo.getPhone(), vo.getStudent(),vo.getBday(), vo.getGender(), vo.getCity(), vo.getEtc(), vo.getId());
     }
 
     public int deleteCrud(int id) {
@@ -56,7 +56,6 @@ public class CrudDAO {
                 vo.setBday(set.getString("bday"));
                 vo.setGender(set.getString("gender"));
                 vo.setCity(set.getString("city"));
-                vo.setFile(set.getString("file"));
                 vo.setEtc(set.getString("etc"));
                 return vo;
             }
@@ -78,7 +77,6 @@ public class CrudDAO {
                 vo.setBday(set.getString("bday"));
                 vo.setGender(set.getString("gender"));
                 vo.setCity(set.getString("city"));
-                vo.setFile(set.getString("file"));
                 vo.setEtc(set.getString("etc"));
                 return vo;
             }

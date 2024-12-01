@@ -107,11 +107,6 @@
                     </div>
 
                     <div class="col-12">
-                        <label class="form-label">결핵검사지</label><br/>
-                        <input type="file" name="file" class="form-control" required>
-                    </div>
-
-                    <div class="col-12">
                         <label for="etc" class="form-label">특이사항<span class="text-muted">(Optional)</span></label>
                         <textarea class="form-control" id="etc" name="etc"></textarea>
                     </div>

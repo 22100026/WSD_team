@@ -78,8 +78,6 @@
             <p class="fs-5">성별 - ${vo.gender}</p>
             <p class="fs-5">주소 - ${vo.city}</p>
             <p class="fs-5">특이사항 - ${vo.etc}</p>
-            <span class="fs-5">결핵 검사지 - ${vo.file}   </span>
-            <img src="img/free-icon-download-8138735.png" style="width: 30px; cursor: pointer" onclick="location.href='../download/${vo.id}'" /><br/>
             <button class="btn btn-primary" type="button" onclick="location.href='../edit/${vo.id}'">수정</button>
             <button class="btn btn-danger" type="button" onclick="del(${vo.id})">삭제</button>
         </div>

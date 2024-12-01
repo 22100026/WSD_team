@@ -89,7 +89,6 @@
       <th scope="col">생일</th>
       <th scope="col">성별</th>
       <th scope="col">주소</th>
-      <th scope="col">첨부파일</th>
       <th scope="col">특이사항</th>
       <th scope="col">메뉴</th>
     </tr>
@@ -102,9 +101,6 @@
         <td>${n.bday}</td>
         <td>${n.gender}</td>
         <td>${n.city}</td>
-        <td>
-          <img src="img/free-icon-download-8138735.png" style="width: 20px" onclick="location.href='download/${n.file}'" class="view">
-        </td>
         <td>${n.etc}</td>
         <td>
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="edit" onclick="location.href='edit/${n.id}'" style="cursor: pointer;">
