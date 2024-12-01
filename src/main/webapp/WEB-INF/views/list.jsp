@@ -82,22 +82,12 @@
   <hr class="my-4">
   <table class="table table-striped table-sm" id="list">
     <tr>
-      <th scope="col">
-        <a href="list.jsp?order=name">이름</a>
-      </th>
-      <th scope="col">
-        <a href="list.jsp?order=dorm">호실</a>
-      </th>
+      <th scope="col">이름</th>
+      <th scope="col">호실</th>
       <th scope="col">전화번호</th>
-      <th scope="col">
-        <a href="list.jsp?order=student">학번</a>
-      </th>
-      <th scope="col">
-        <a href="list.jsp?order=bday">생일</a>
-      </th>
-      <th scope="col">
-        <a href="list.jsp?order=gender">성별</a>
-      </th>
+      <th scope="col">학번</th>
+      <th scope="col">생일</th>
+      <th scope="col">성별</th>
       <th scope="col">주소</th>
       <th scope="col">첨부파일</th>
       <th scope="col">특이사항</th>

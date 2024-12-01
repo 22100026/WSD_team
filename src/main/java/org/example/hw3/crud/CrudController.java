@@ -6,17 +6,23 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class CrudController {
     @Autowired
     CrudDAO crudDAO;
 
-    @RequestMapping(value = "/list", method=RequestMethod.GET)
-    public String list(Model model){
-        model.addAttribute("list", crudDAO.getListCrud());
+    @RequestMapping(value = "/list", method = RequestMethod.GET)
+    public String list(Model model, @RequestParam(value = "category", required = false, defaultValue = "") String category, @RequestParam(value = "search", required = false, defaultValue = "") String search) {
+        if (search != null && !search.trim().isEmpty()) {
+            model.addAttribute("list", crudDAO.searchCrud(category, "%" + search + "%")); // 검색
+        } else {
+            model.addAttribute("list", crudDAO.getListCrud()); // 전체 목록
+        }
         return "list";
     }
+
 
     @RequestMapping(value = "/write", method = RequestMethod.GET)
     public String write() {

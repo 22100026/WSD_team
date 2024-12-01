@@ -63,6 +63,28 @@ public class CrudDAO {
         });
     }
 
+    public List<CrudVO> searchCrud(String category, String search) {
+        String CRUD_SEARCH = "select * from crud where " + category + " like ?";
+        return jdbcTemplate.query(CRUD_SEARCH, new Object[] {search}, new RowMapper<CrudVO>() {
+
+            @Override
+            public CrudVO mapRow(ResultSet set, int rowNum) throws SQLException {
+                CrudVO vo = new CrudVO();
+                vo.setId(set.getInt("id"));
+                vo.setName(set.getString("name"));
+                vo.setDorm(set.getInt("dorm"));
+                vo.setPhone(set.getString("phone"));
+                vo.setStudent(set.getInt("student"));
+                vo.setBday(set.getString("bday"));
+                vo.setGender(set.getString("gender"));
+                vo.setCity(set.getString("city"));
+                vo.setFile(set.getString("file"));
+                vo.setEtc(set.getString("etc"));
+                return vo;
+            }
+        });
+    }
+
     public void updateView(int id){
         jdbcTemplate.update(UPDATE_VIEW, id);
     }
