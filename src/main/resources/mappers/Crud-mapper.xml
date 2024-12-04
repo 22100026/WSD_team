@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Crud">
+    <insert id="insertCrud">
+        INSERT INTO crud (name, phone, bday, gender, city, etc, dorm, student, filename)
+        VALUES (#{name}, #{phone}, #{bday}, #{gender}, #{city}, #{etc}, #{dorm}, #{student}, #{filename})
+    </insert>
+
+    <update id="updateCrud">
+        update crud
+        set name = #{name}, phone = #{phone}, bday = #{bday}, gender = #{gender}, city = #{city}, etc = #{etc}, view = #{view}, dorm = #{dorm}, student = #{student}, filename = #{filename}
+        where id = #{id}
+    </update>
+    <select id="getCrudList" resultType="crud">
+        select * from crud order by id desc
+    </select>
+    <select id="getCrudCnt" resultType="Integer">
+        select count(*) from crud
+    </select>
+    <delete id="deleteCrud">
+        delete from crud where id=#{id}
+    </delete>
+    <select id="getCrud" resultType="crud">
+        select * from crud where id=#{id}
+    </select>
+    <select id="searchCrud" resultType="crud">
+        SELECT *
+        FROM crud
+        WHERE ${category} LIKE CONCAT('%', #{search}, '%')
+    </select>
+    <update id="updateView">
+        update crud
+        set view=view+1
+        where id= #{id}
+    </update>
+
+
+</mapper>

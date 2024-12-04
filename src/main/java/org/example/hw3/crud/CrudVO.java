@@ -10,7 +10,7 @@ public class CrudVO {
     private String gender;
     private String city;
     private String etc;
-    private String file;
+    private String filename;
     private int view;
 
     public int getId() {
@@ -85,12 +85,12 @@ public class CrudVO {
         this.etc = etc;
     }
 
-    public String getFile() {
-        return file;
+    public String getFilename() {
+        return filename;
     }
 
-    public void setFile(String file) {
-        this.file = file;
+    public void setFilename(String file) {
+        this.filename = file;
     }
 
     public int getView() {

@@ -47,7 +47,7 @@
     <div class="row g-5">
         <div class="col-md-7 col-lg-8">
             <h4 class="mb-3">기숙사생생 추가</h4>
-            <form class="needs-validation" action="write_ok" method="POST">
+            <form class="needs-validation" action="write_ok" method="POST" enctype="multipart/form-data">
                 <div class="row g-3">
                     <div class="col-12">
                         <label for="name" class="form-label">이름</label>
@@ -109,6 +109,10 @@
                     <div class="col-12">
                         <label for="etc" class="form-label">특이사항<span class="text-muted">(Optional)</span></label>
                         <textarea class="form-control" id="etc" name="etc"></textarea>
+                    </div>
+                    <div class="col-12">
+                        <label for="file" class="form-label">파일 업로드<span class="text-muted">(Optional)</span></label>
+                        <input type="file" class="form-control" id="file" name="file">
                     </div>
 
                     <hr class="my-4">

@@ -1,5 +1,6 @@
 package org.example.hw3.crud;
 
+import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -8,13 +9,14 @@ import org.springframework.stereotype.Repository;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public class CrudDAO {
     @Autowired
-    JdbcTemplate jdbcTemplate;
-
+    SqlSession sqlSession;
     private final String CRUD_INSERT = "insert into crud (name, dorm, phone, student, bday, gender, city, etc, view) values(?,?,?,?,?,?,?,?,1)";
     private final String CRUD_UPDATE = "update crud set name=?, dorm=?, phone=?, student=?, bday=?, gender=?, city=?, etc=? where id=?";
     private final String CRUD_DELETE = "delete from crud where id=?";
@@ -22,69 +24,58 @@ public class CrudDAO {
     private final String CRUD_SELECTALL = "select * from crud";
     private final String UPDATE_VIEW = "update crud set view=view+1 where id=?";
 
-    public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
-        this.jdbcTemplate = jdbcTemplate;
-    }
+    //public void setJdbcTemplate(JdbcTemplate jdbcTemplate) {
+        //this.jdbcTemplate = jdbcTemplate;
+    //}
 
     public int insertCrud(CrudVO vo) {
-        return jdbcTemplate.update(CRUD_INSERT, vo.getName(), vo.getDorm(), vo.getPhone(), vo.getStudent(),vo.getBday(), vo.getGender(), vo.getCity(), vo.getEtc());
+        int count;
+        count = sqlSession.insert("Crud.insertCrud", vo);
+        return count;
     }
 
     public int updateCrud(CrudVO vo) {
-        return jdbcTemplate.update(CRUD_UPDATE, vo.getName(), vo.getDorm(), vo.getPhone(), vo.getStudent(),vo.getBday(), vo.getGender(), vo.getCity(), vo.getEtc(), vo.getId());
+        int count;
+        count = sqlSession.update("Crud.updateCrud", vo);
+        return count;
     }
 
     public int deleteCrud(int id) {
-        return jdbcTemplate.update(CRUD_DELETE, id);
+        int count;
+        count = sqlSession.delete("Crud.deleteCrud", id);
+        return count;
     }
+
 
     public CrudVO getCrud(int id) {
-        return jdbcTemplate.queryForObject(CRUD_SELECT, new Object[] {id}, new BeanPropertyRowMapper<CrudVO>(CrudVO.class));
+        CrudVO vo;
+        vo = sqlSession.selectOne("Crud.getCrud",id);
+        return vo;
     }
 
-    public List<CrudVO> getListCrud() {
-        return jdbcTemplate.query(CRUD_SELECTALL, new RowMapper<CrudVO>() {
 
-            @Override
-            public CrudVO mapRow(ResultSet set, int rowNum) throws SQLException {
-                CrudVO vo = new CrudVO();
-                vo.setId(set.getInt("id"));
-                vo.setName(set.getString("name"));
-                vo.setDorm(set.getInt("dorm"));
-                vo.setPhone(set.getString("phone"));
-                vo.setStudent(set.getInt("student"));
-                vo.setBday(set.getString("bday"));
-                vo.setGender(set.getString("gender"));
-                vo.setCity(set.getString("city"));
-                vo.setEtc(set.getString("etc"));
-                return vo;
-            }
-        });
+
+    public List<CrudVO> getCrudList() {
+        List<CrudVO> list = sqlSession.selectList("Crud.getCrudList");
+        return list;
     }
+
 
     public List<CrudVO> searchCrud(String category, String search) {
-        String CRUD_SEARCH = "select * from crud where " + category + " like ?";
-        return jdbcTemplate.query(CRUD_SEARCH, new Object[] {search}, new RowMapper<CrudVO>() {
+        // MyBatis 동적 SQL 호출
+        Map<String, Object> params = new HashMap<>();
+        params.put("category", category); // 검색할 컬럼 이름
+        params.put("search", search);    // 검색 값
 
-            @Override
-            public CrudVO mapRow(ResultSet set, int rowNum) throws SQLException {
-                CrudVO vo = new CrudVO();
-                vo.setId(set.getInt("id"));
-                vo.setName(set.getString("name"));
-                vo.setDorm(set.getInt("dorm"));
-                vo.setPhone(set.getString("phone"));
-                vo.setStudent(set.getInt("student"));
-                vo.setBday(set.getString("bday"));
-                vo.setGender(set.getString("gender"));
-                vo.setCity(set.getString("city"));
-                vo.setEtc(set.getString("etc"));
-                return vo;
-            }
-        });
+        // MyBatis 매퍼 호출
+        List<CrudVO> list = sqlSession.selectList("Crud.searchCrud", params);
+        return list;
     }
 
+
+
     public void updateView(int id){
-        jdbcTemplate.update(UPDATE_VIEW, id);
+        sqlSession.update("Crud.updateView",id);
     }
 
 }
