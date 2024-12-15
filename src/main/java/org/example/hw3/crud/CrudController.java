@@ -25,6 +25,45 @@ public class CrudController {
         return "list";
     }
 
+    @RequestMapping(value = "/name", method = RequestMethod.GET)
+    public String listName(Model model, @RequestParam(value = "category", required = false, defaultValue = "") String category, @RequestParam(value = "search", required = false, defaultValue = "") String search) {
+        if (search != null && !search.trim().isEmpty()) {
+            model.addAttribute("list", crudDAO.searchCrud(category, "%" + search + "%")); // 검색
+        } else {
+            model.addAttribute("list", crudDAO.getCrudListName()); // 전체 목록
+        }
+        return "list";
+    }
+
+    @RequestMapping(value = "/student", method = RequestMethod.GET)
+    public String listStudent(Model model, @RequestParam(value = "category", required = false, defaultValue = "") String category, @RequestParam(value = "search", required = false, defaultValue = "") String search) {
+        if (search != null && !search.trim().isEmpty()) {
+            model.addAttribute("list", crudDAO.searchCrud(category, "%" + search + "%")); // 검색
+        } else {
+            model.addAttribute("list", crudDAO.getCrudListStudent()); // 전체 목록
+        }
+        return "list";
+    }
+
+    @RequestMapping(value = "/bday", method = RequestMethod.GET)
+    public String listBday(Model model, @RequestParam(value = "category", required = false, defaultValue = "") String category, @RequestParam(value = "search", required = false, defaultValue = "") String search) {
+        if (search != null && !search.trim().isEmpty()) {
+            model.addAttribute("list", crudDAO.searchCrud(category, "%" + search + "%")); // 검색
+        } else {
+            model.addAttribute("list", crudDAO.getCrudListBday()); // 전체 목록
+        }
+        return "list";
+    }
+
+    @RequestMapping(value = "/gender", method = RequestMethod.GET)
+    public String listGender(Model model, @RequestParam(value = "category", required = false, defaultValue = "") String category, @RequestParam(value = "search", required = false, defaultValue = "") String search) {
+        if (search != null && !search.trim().isEmpty()) {
+            model.addAttribute("list", crudDAO.searchCrud(category, "%" + search + "%")); // 검색
+        } else {
+            model.addAttribute("list", crudDAO.getCrudListGender()); // 전체 목록
+        }
+        return "list";
+    }
 
     @RequestMapping(value = "/write", method = RequestMethod.GET)
     public String write() {

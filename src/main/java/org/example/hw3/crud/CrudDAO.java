@@ -59,6 +59,22 @@ public class CrudDAO {
         List<CrudVO> list = sqlSession.selectList("Crud.getCrudList");
         return list;
     }
+    public List<CrudVO> getCrudListName() {
+        List<CrudVO> list = sqlSession.selectList("Crud.getCrudListName");
+        return list;
+    }
+    public List<CrudVO> getCrudListStudent() {
+        List<CrudVO> list = sqlSession.selectList("Crud.getCrudListStudent");
+        return list;
+    }
+    public List<CrudVO> getCrudListBday() {
+        List<CrudVO> list = sqlSession.selectList("Crud.getCrudListBday");
+        return list;
+    }
+    public List<CrudVO> getCrudListGender() {
+        List<CrudVO> list = sqlSession.selectList("Crud.getCrudListGender");
+        return list;
+    }
 
 
     public List<CrudVO> searchCrud(String category, String search) {

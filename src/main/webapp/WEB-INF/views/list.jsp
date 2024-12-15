@@ -62,15 +62,15 @@
 
 <div class="container">
   <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-end">
-      <form class="d-flex" action="list" method="get" role="search" id="search">
-        <select id="category" name="category">
-          <option value="name">이름</option>
-          <option value="dorm">호실</option>
-          <option value="student">학번</option>
-          <option value="city">주소</option>
-        </select>
-        <input type="search" class="form-control" name="search" placeholder="검색어를 입력하세요..." aria-label="Search">
-      </form>
+    <form class="d-flex" action="list" method="get" role="search" id="search">
+      <select id="category" name="category">
+        <option value="name">이름</option>
+        <option value="dorm">호실</option>
+        <option value="student">학번</option>
+        <option value="city">주소</option>
+      </select>
+      <input type="search" class="form-control" name="search" placeholder="검색어를 입력하세요..." aria-label="Search">
+    </form>
     <div class="text-end">
       <button type="submit" class="btn btn-primary" form="search">검색</button>
       <button type="button" class="btn btn-warning" onclick="location.href = 'write'">추가</button>
@@ -83,12 +83,20 @@
   <table class="table table-striped table-sm" id="list">
     <tr>
       <th scope="col">id</th>
-      <th scope="col">이름</th>
+      <th scope="col">
+        <a href="name">이름</a>
+      </th>
       <th scope="col">호실</th>
       <th scope="col">전화번호</th>
-      <th scope="col">학번</th>
-      <th scope="col">생일</th>
-      <th scope="col">성별</th>
+      <th scope="col">
+        <a href="student">학번</a>
+      </th>
+      <th scope="col">
+        <a href="bday">생일</a>
+      </th>
+      <th scope="col">
+        <a href="gender">성별</a>
+      </th>
       <th scope="col">주소</th>
       <th scope="col">특이사항</th>
       <th scope="col">메뉴</th>

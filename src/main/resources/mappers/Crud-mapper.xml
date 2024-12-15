@@ -16,6 +16,18 @@
     <select id="getCrudList" resultType="crud">
         select * from crud order by id desc
     </select>
+    <select id="getCrudListName" resultType="crud">
+        select * from crud order by name
+    </select>
+    <select id="getCrudListStudent" resultType="crud">
+        select * from crud order by student
+    </select>
+    <select id="getCrudListBday" resultType="crud">
+        select * from crud order by bday
+    </select>
+    <select id="getCrudListGender" resultType="crud">
+        select * from crud order by gender
+    </select>
     <select id="getCrudCnt" resultType="Integer">
         select count(*) from crud
     </select>
@@ -35,6 +47,5 @@
         set view=view+1
         where id= #{id}
     </update>
-
 
 </mapper>
